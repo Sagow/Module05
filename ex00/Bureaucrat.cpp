@@ -12,28 +12,28 @@ Bureaucrat::Bureaucrat()
 
 Bureaucrat::Bureaucrat(std::string name, int grade)
 {
+	std::cout << "Trying to create " << name <<", with a grade of " << grade << std::endl;
 	_name = name;
 	try
 	{
-		if (_grade > 0 && _grade <= 150)
-			_grade = grade;
-		else if (_grade < 1)
-			throw (GradeTooHighException);
+		if (_grade < 1)
+			throw (GradeTooHighException());
+		else if (_grade > 150)
+			throw (GradeTooLowException());
 		else
-			throw (GradeTooLowException);
-
+			_grade = grade;
 	}
 	catch(const std::exception& e)
 	{
-		if (e)
+		std::cout << e.what() << std::endl;
 	}
 	
 }
 
 Bureaucrat::Bureaucrat( const Bureaucrat & src )
 {
+	*this = src;
 }
-
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
@@ -58,7 +58,7 @@ Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 {
-	std::cout << i.getName() << ", bureaucrat grade " << i.getGrade();
+	std::cout << ((Bureaucrat)i).getName() << ", bureaucrat grade " << ((Bureaucrat)i).getGrade();
 	return o;
 }
 
@@ -67,10 +67,46 @@ std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void		Bureaucrat::promote()
+{
+	try
+	{
+		if (getGrade() == 1)
+			throw (GradeTooHighException());
+	}
+	catch(const std::exception &e)
+	{
+		std::cout << e.what();
+	}
+	_grade--;
+}
+
+void		Bureaucrat::retrograde()
+{
+	try
+	{
+		if (getGrade() == 150)
+			throw (GradeTooLowException());
+	}
+	catch(const std::exception &e)
+	{
+		std::cout << e.what();
+	}
+	_grade++;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
+std::string	Bureaucrat::getName()
+{
+	return (_name);
+}
+
+int			Bureaucrat::getGrade()
+{
+	return (_grade);
+}
 
 /* ************************************************************************** */
