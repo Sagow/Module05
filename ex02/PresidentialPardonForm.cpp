@@ -53,18 +53,11 @@ std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i 
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void	PresidentialPardonForm::execute(Bureaucrat const & executor)
+void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	try
-	{
+
 		execution(((Bureaucrat)executor).getGrade());
 		std::cout << _target << " got pardonned by President Zaphod Beeblebrox" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << "The form " << getName() << "couldn't be executed by " << ((Bureaucrat)executor).getName() << " because ";
-		std::cerr << e.what() << '\n';
-	}
 	
 }
 

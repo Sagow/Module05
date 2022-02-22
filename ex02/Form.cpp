@@ -95,7 +95,7 @@ void		Form::beSigned(Bureaucrat &bureaucrat)
 	
 }
 
-void		Form::execution(int grade)
+void		Form::execution(int grade) const
 {
 	if (!_signed)
 		throw (NotSignedException());
