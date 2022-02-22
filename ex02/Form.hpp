@@ -62,7 +62,7 @@ class Form
 		void		execution(int grade);
 
 		void		beSigned(Bureaucrat &bureaucrat);
-		virtual const void	execute(Bureaucrat const & executor) = 0;
+		virtual void	execute(Bureaucrat const & executor) = 0;
 
 	private:
 

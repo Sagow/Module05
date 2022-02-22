@@ -1,33 +1,40 @@
 # include "Bureaucrat.hpp"
 # include "Form.hpp"
+# include "PresidentialPardonForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "ShrubberyCreationForm.hpp"
 
 int	main(void)
 {
-	Form	def;
-	std::cout << "Creating Normal" << std::endl;
-	Form	normal("Normal", 50, 68);
-	std::cout << "Creating Trop bas" << std::endl;
-	Form	tropBas("Trop bas", 50, 151);
-	std::cout << "Creating Trop haut" << std::endl;
-	Form	tropHaut("Trop haut", 0, 68);
-
-	std::cout << normal << std::endl;
-	std::cout << tropBas << std::endl;
-	std::cout << tropHaut << std::endl;
-
-	Bureaucrat Louise("Louise", 48);
-	Bureaucrat Jeanne("Jeanne", 147);
-	Form	A("A", 50, 68);
-	Form	B("B", 50, 68);
-	Form	C("C", 50, 68);
-	Form	D("D", 50, 68);
+	PresidentialPardonForm	FormA("Marina");
+	RobotomyRequestForm		FormB("Jean-Eudes");
+	ShrubberyCreationForm	FormC("Jardin");
+	PresidentialPardonForm	pasSigneA("Marina");
+	RobotomyRequestForm		pasSigneB("Jean-Eudes");
+	ShrubberyCreationForm	pasSigneC("Jardin");
+	Bureaucrat				chef("Grand Schtroumpf", 1);
+	Bureaucrat				Monique("Monique", 139);
 
 
-	Louise.signForm(A);
-	A.beSigned(Louise);
-	B.beSigned(Louise);
-	Jeanne.signForm(C);
-	D.beSigned(Jeanne);
-	
+	std::cout << chef.getName() << "va essayer (sans succes) d'executer les forms A, B, C non signees" << std::endl;
+	chef.executeForm(FormA);
+	chef.executeForm(FormB);
+	chef.executeForm(FormB);
+
+	std::cout << chef.getName() << "va signer les forms A, B, C" << std::endl;
+	chef.signForm(FormA);
+	chef.signForm(FormB);
+	chef.signForm(FormC);
+
+	std::cout << chef.getName() << "va executer les forms A, B, C" << std::endl;
+	chef.executeForm(FormA);
+	chef.executeForm(FormB);
+	chef.executeForm(FormB);
+
+	std::cout << Monique.getName() << "va essayer (sans succes) d'executer les forms A, B, C" << std::endl;
+	Monique.executeForm(FormA);
+	Monique.executeForm(FormB);
+	Monique.executeForm(FormB);
+
 	return (0);
 }
