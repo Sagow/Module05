@@ -16,16 +16,13 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 	_name = name;
 	try
 	{
-		if (_grade < 1)
-			throw (GradeTooHighException());
-		else if (_grade > 150)
-			throw (GradeTooLowException());
-		else
-			_grade = grade;
+		setGrade(grade);
 	}
 	catch(const std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
+		_grade = 150;
+		std::cout << "Grade set by default to " << 150 << std::endl;
 	}
 	
 }
@@ -71,28 +68,26 @@ void		Bureaucrat::promote()
 {
 	try
 	{
-		if (getGrade() == 1)
-			throw (GradeTooHighException());
+		setGrade(getGrade() - 1);
 	}
 	catch(const std::exception &e)
 	{
-		std::cout << e.what();
+		std::cout << e.what() << std::endl;
+		std::cout << getName() << " cannot be promoted" << std::endl;
 	}
-	_grade--;
 }
 
 void		Bureaucrat::retrograde()
 {
 	try
 	{
-		if (getGrade() == 150)
-			throw (GradeTooLowException());
+		setGrade(getGrade() + 1);
 	}
 	catch(const std::exception &e)
 	{
-		std::cout << e.what();
+		std::cout << e.what() << std::endl;
+		std::cout << getName() << " cannot be retrograded" << std::endl;
 	}
-	_grade++;
 }
 
 /*
@@ -107,6 +102,16 @@ std::string	Bureaucrat::getName()
 int			Bureaucrat::getGrade()
 {
 	return (_grade);
+}
+
+void	Bureaucrat::setGrade(int grade)
+{
+	if (grade < 1)
+		throw (GradeTooHighException());
+	else if (grade > 150)
+		throw (GradeTooLowException());
+	else
+		_grade = grade;
 }
 
 /* ************************************************************************** */

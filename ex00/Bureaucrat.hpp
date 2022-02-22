@@ -11,7 +11,7 @@ class Bureaucrat
 		{
 			virtual const char* what() const throw()
 			{
-				return "The grade is too high!";
+				return ("The grade is too high!");
 			}
 		};
 
@@ -34,6 +34,7 @@ class Bureaucrat
 		int			getGrade();
 		void		promote();
 		void		retrograde();
+		void		setGrade(int grade);
 
 	private:
 
