@@ -70,8 +70,8 @@ std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
 	o << "Form " << ((Form)i).getName();
 	o << (((Form)i).getSigned() ? " is" : " is not");
-	o << " signed, it can be signed by bureaucrats level " << ((Form)i).getSignGrade() << (((Form)i).getSignGrade() < 1 ? "and up," : ",");
-	o << " it can be executed by bureacrats level " << ((Form)i).getExecGrade() << (((Form)i).getExecGrade() < 1 ? "and up." : ".");
+	o << " signed, it can be signed by bureaucrats level " << ((Form)i).getSignGrade() << (((Form)i).getSignGrade() > 1 ? " and up," : ",");
+	o << " it can be executed by bureacrats level " << ((Form)i).getExecGrade() << (((Form)i).getExecGrade() > 1 ? " and up." : ".");
 	return o;
 }
 
@@ -89,7 +89,7 @@ void		Form::beSigned(Bureaucrat &bureaucrat)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << bureaucrat.getName() << " couldn't sign " << getName() << " because " << std::endl;
+		std::cout << bureaucrat.getName() << " couldn't sign " << getName() << " because ";
 		std::cerr << e.what() << '\n';
 	}
 	
@@ -113,7 +113,7 @@ void		Form::setSigned(int grade)
 {
 	if (_signed)
 		throw (AlreadySignedException());
-	else if (grade < getSignGrade())
+	else if (grade > getSignGrade())
 		throw (GradeTooLowException());
 	else _signed = true;
 }
