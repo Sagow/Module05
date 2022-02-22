@@ -7,7 +7,7 @@ CC =    c++
 
 FLAGS = -std=c++98 -Wall -Werror -Wextra
 
-NAME =  ex00
+NAME =  module05
 
 all: ${NAME}
 
