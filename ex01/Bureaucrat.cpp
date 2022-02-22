@@ -1,0 +1,117 @@
+#include "Bureaucrat.hpp"
+
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
+Bureaucrat::Bureaucrat()
+{
+	_name = "Anonymous";
+	_grade = 150;
+}
+
+Bureaucrat::Bureaucrat(std::string name, int grade)
+{
+	std::cout << "Trying to create " << name <<", with a grade of " << grade << std::endl;
+	_name = name;
+	try
+	{
+		setGrade(grade);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+		_grade = 150;
+		std::cout << "Grade set by default to " << 150 << std::endl;
+	}
+	
+}
+
+Bureaucrat::Bureaucrat( const Bureaucrat & src )
+{
+	*this = src;
+}
+
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
+
+Bureaucrat::~Bureaucrat()
+{
+}
+
+
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
+
+Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
+{
+	_name = rhs._name;
+	_grade = rhs._grade;
+
+	return *this;
+}
+
+std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
+{
+	std::cout << ((Bureaucrat)i).getName() << ", bureaucrat grade " << ((Bureaucrat)i).getGrade();
+	return o;
+}
+
+
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
+
+void		Bureaucrat::promote()
+{
+	try
+	{
+		setGrade(getGrade() - 1);
+	}
+	catch(const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+		std::cout << getName() << " cannot be promoted" << std::endl;
+	}
+}
+
+void		Bureaucrat::retrograde()
+{
+	try
+	{
+		setGrade(getGrade() + 1);
+	}
+	catch(const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+		std::cout << getName() << " cannot be retrograded" << std::endl;
+	}
+}
+
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
+
+std::string	Bureaucrat::getName()
+{
+	return (_name);
+}
+
+int			Bureaucrat::getGrade()
+{
+	return (_grade);
+}
+
+void	Bureaucrat::setGrade(int grade)
+{
+	if (grade < 1)
+		throw (GradeTooHighException());
+	else if (grade > 150)
+		throw (GradeTooLowException());
+	else
+		_grade = grade;
+}
+
+/* ************************************************************************** */
