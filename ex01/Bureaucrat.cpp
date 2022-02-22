@@ -90,6 +90,21 @@ void		Bureaucrat::retrograde()
 	}
 }
 
+void		Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.setSigned(getGrade());
+		std::cout << getName() << " signed form " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << getName() << " couldn't sign form " << form.getName() << " because ";
+		std::cerr << e.what() << '\n';
+	}
+	
+}
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

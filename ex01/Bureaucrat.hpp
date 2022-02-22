@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include "Form.hpp"
 
 class Bureaucrat
 {
@@ -23,6 +24,14 @@ class Bureaucrat
 			}
 		};
 
+		class AlreadySignedException : public std::exception
+		{
+			virtual const char* what() const throw()
+			{
+				return "the form is already signed!";
+			}
+		};
+
 		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat( Bureaucrat const & src );
@@ -35,6 +44,8 @@ class Bureaucrat
 		void		promote();
 		void		retrograde();
 		void		setGrade(int grade);
+
+		void		signForm(Form &form);
 
 	private:
 

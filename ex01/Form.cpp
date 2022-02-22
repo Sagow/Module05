@@ -80,6 +80,20 @@ std::ostream &			operator<<( std::ostream & o, Form const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void		Form::beSigned(Bureaucrat &bureaucrat)
+{
+	try
+	{
+		setSigned(bureaucrat.getGrade());
+		std::cout << bureaucrat.getName() << " signed " << getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << bureaucrat.getName() << " couldn't sign " << getName() << " because " << std::endl;
+		std::cerr << e.what() << '\n';
+	}
+	
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
@@ -93,6 +107,15 @@ std::string	Form::getName()
 bool		Form::getSigned()
 {
 	return (_signed);
+}
+
+void		Form::setSigned(int grade)
+{
+	if (_signed)
+		throw (AlreadySignedException());
+	else if (grade < getSignGrade())
+		throw (GradeTooLowException());
+	else _signed = true;
 }
 
 int			Form::getSignGrade()

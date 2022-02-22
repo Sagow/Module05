@@ -3,34 +3,31 @@
 
 int	main(void)
 {
-	Bureaucrat	Jean_Louis("Jean-Louis", 15);
-	Bureaucrat	chef("Grand Schtroumpf", 1);
-	Bureaucrat	stagiaire;
-	Bureaucrat	machineACafe("La machine a cafe", 164);
-	Bureaucrat	Jeanne("Jeanne", -2);
+	Form	def;
+	std::cout << "Creating Normal" << std::endl;
+	Form	normal("Normal", 50, 68);
+	std::cout << "Creating Trop bas" << std::endl;
+	Form	tropBas("Trop bas", 50, 151);
+	std::cout << "Creating Trop haut" << std::endl;
+	Form	tropHaut("Trop haut", 0, 68);
 
-	std::cout << std::endl;
+	std::cout << normal << std::endl;
+	std::cout << tropBas << std::endl;
+	std::cout << tropHaut << std::endl;
 
-	std::cout << Jean_Louis << std::endl;
-	std::cout << stagiaire << std::endl;
-	std::cout << chef << std::endl << std::endl;
+	Bureaucrat Louise("Louise", 48);
+	Bureaucrat Jeanne("Jeanne", 147);
+	Form	A("A", 50, 68);
+	Form	B("B", 50, 68);
+	Form	C("C", 50, 68);
+	Form	D("D", 50, 68);
 
-	std::cout << "Promoting" << std::endl;
-	Jean_Louis.promote();
-	std::cout << Jean_Louis << std::endl;
-	Jean_Louis.retrograde();
-	stagiaire.promote();
-	std::cout << stagiaire << std::endl;
-	stagiaire.retrograde();
-	chef.promote();
-	std::cout << std::endl;
 
-	std::cout << "Retrograding" << std::endl;
-	Jean_Louis.retrograde();
-	std::cout << Jean_Louis << std::endl;
-	chef.retrograde();
-	std::cout << chef << std::endl;
-	stagiaire.retrograde();
+	Louise.signForm(A);
+	A.beSigned(Louise);
+	B.beSigned(Louise);
+	Jeanne.signForm(C);
+	D.beSigned(Jeanne);
 	
 	return (0);
 }

@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include "Bureaucrat.hpp"
 
 class Form
 {
@@ -30,15 +31,25 @@ class Form
 			}
 		};
 
+		class AlreadySignedException : public std::exception
+		{
+			virtual const char* what() const throw()
+			{
+				return "the form is already signed!";
+			}
+		};
+
 		Form(std::string name, int sign, int exec);
 
 		std::string	getName();
 		bool		getSigned();
+		void		setSigned(int grade);
 		int			getSignGrade();
 		void		setSignGrade(int grade);
 		int			getExecGrade();
 		void		setExecGrade(int grade);
 
+		void		beSigned(Bureaucrat &bureaucrat);
 
 	private:
 
