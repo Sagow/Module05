@@ -24,14 +24,6 @@ class Bureaucrat
 			}
 		};
 
-		class AlreadySignedException : virtual public std::exception
-		{
-			virtual const char* what() const throw()
-			{
-				return "the form is already signed!";
-			}
-		};
-
 		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat( Bureaucrat const & src );
@@ -40,7 +32,7 @@ class Bureaucrat
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 
 		std::string	getName() const;
-		int			getGrade();
+		int			getGrade() const;
 		void		promote();
 		void		retrograde();
 		void		setGrade(int grade);

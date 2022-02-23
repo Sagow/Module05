@@ -17,22 +17,10 @@ Form::Form( const Form & src ) : _name(src._name), _signGrade(src._signGrade), _
 Form::Form(std::string name, int sign, int exec) : _name(name), _signGrade(sign), _execGrade(exec)
 {
 	_signed = false;
-	try
-	{
-		setSignGrade(sign);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		setExecGrade(exec);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	if (sign < 1 || exec < 1)
+		throw (GradeTooHighException());
+	else if (sign > 150 || exec > 150)
+		throw (GradeTooLowException());
 }
 
 
@@ -57,10 +45,10 @@ Form &				Form::operator=( Form const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
-	o << "Form " << ((Form)i).getName();
-	o << (((Form)i).getSigned() ? " is" : " is not");
-	o << " signed, it can be signed by bureaucrats level " << ((Form)i).getSignGrade() << (((Form)i).getSignGrade() > 1 ? " and up," : ",");
-	o << " it can be executed by bureacrats level " << ((Form)i).getExecGrade() << (((Form)i).getExecGrade() > 1 ? " and up." : ".");
+	o << "Form " << i.getName();
+	o << (i.getSigned() ? " is" : " is not");
+	o << " signed, it can be signed by bureaucrats level " << i.getSignGrade() << (i.getSignGrade() > 1 ? " and up," : ",");
+	o << " it can be executed by bureacrats level " << i.getExecGrade() << (i.getExecGrade() > 1 ? " and up." : ".");
 	return o;
 }
 
@@ -88,12 +76,12 @@ void		Form::beSigned(Bureaucrat &bureaucrat)
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-std::string	Form::getName()
+std::string	Form::getName() const
 {
 	return (_name);
 }
 
-bool		Form::getSigned()
+bool		Form::getSigned() const
 {
 	return (_signed);
 }
@@ -107,30 +95,14 @@ void		Form::setSigned(int grade)
 	else _signed = true;
 }
 
-int			Form::getSignGrade()
+int			Form::getSignGrade() const
 {
 	return (_signGrade);
 }
 
-void		Form::setSignGrade(int grade)
-{
-	if (grade < 1)
-		throw (GradeTooHighException());
-	else if (grade > 150)
-		throw (GradeTooLowException());
-}
-
-int			Form::getExecGrade()
+int			Form::getExecGrade() const
 {
 	return (_execGrade);
-}
-
-void		Form::setExecGrade(int grade)
-{
-	if (grade < 1)
-		throw (GradeTooHighException());
-	else if (grade > 150)
-		throw (GradeTooLowException());
 }
 
 /* ************************************************************************** */

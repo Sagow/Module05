@@ -43,6 +43,7 @@ int	main(void)
 	{
 		neMarchePas = someRandomIntern.makeForm("formulaire inexistant", "Fantasia");
 		chef.signForm(*neMarchePas);
+		delete neMarchePas;
 	}
 	catch(const std::exception& e)
 	{

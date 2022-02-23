@@ -53,7 +53,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	srand(time(NULL));
 	
-	execution(((Bureaucrat)executor).getGrade());
+	Form::execute(executor);
 	std::cout << "Bzzzzzzzzzzzzzzzzzzzzzzzzbrrbrbr ";
 	if (rand()%2)
 		std::cout << _target << " was succesfully robotomised." << std::endl;

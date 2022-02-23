@@ -17,22 +17,10 @@ Form::Form( const Form & src ) : _name(src._name), _signGrade(src._signGrade), _
 Form::Form(std::string name, int sign, int exec) : _name(name), _signGrade(sign), _execGrade(exec)
 {
 	_signed = false;
-	try
-	{
-		setSignGrade(sign);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		setExecGrade(exec);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	if (sign < 1 || exec < 1)
+		throw (GradeTooHighException());
+	else if (sign > 150 || exec > 150)
+		throw (GradeTooLowException());
 }
 
 
@@ -84,11 +72,11 @@ void		Form::beSigned(Bureaucrat &bureaucrat)
 	
 }
 
-void		Form::execution(int grade) const
+void		Form::execute(Bureaucrat const & executor) const
 {
 	if (!_signed)
 		throw (NotSignedException());
-	else if (grade > getExecGrade())
+	else if (executor.getGrade() > getExecGrade())
 		throw (GradeTooLowException());
 }
 
@@ -112,7 +100,7 @@ void		Form::setSigned(int grade)
 		throw (AlreadySignedException());
 	else if (grade > getSignGrade())
 		throw (GradeTooLowException());
-	else _signed = true;
+	_signed = true;
 }
 
 int			Form::getSignGrade() const
@@ -120,25 +108,9 @@ int			Form::getSignGrade() const
 	return (_signGrade);
 }
 
-void		Form::setSignGrade(int grade)
-{
-	if (grade < 1)
-		throw (GradeTooHighException());
-	else if (grade > 150)
-		throw (GradeTooLowException());
-}
-
 int			Form::getExecGrade() const
 {
 	return (_execGrade);
-}
-
-void		Form::setExecGrade(int grade)
-{
-	if (grade < 1)
-		throw (GradeTooHighException());
-	else if (grade > 150)
-		throw (GradeTooLowException());
 }
 
 /* ************************************************************************** */

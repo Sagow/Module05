@@ -43,13 +43,11 @@ class Form
 
 		Form(std::string name, int sign, int exec);
 
-		std::string	getName();
-		bool		getSigned();
+		std::string	getName() const;
+		bool		getSigned() const;
 		void		setSigned(int grade);
-		int			getSignGrade();
-		void		setSignGrade(int grade);
-		int			getExecGrade();
-		void		setExecGrade(int grade);
+		int			getSignGrade() const;
+		int			getExecGrade() const;
 
 		void		beSigned(Bureaucrat &bureaucrat);
 

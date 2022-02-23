@@ -53,7 +53,7 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	execution(((Bureaucrat)executor).getGrade());
+	Form::execute(executor);
 	std::ofstream file;
 	file.open((_target + "_shrubbery").c_str());
 	file << " 	                   . . ." << std::endl;

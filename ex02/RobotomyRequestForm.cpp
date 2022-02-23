@@ -40,7 +40,10 @@ RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm con
 
 std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i )
 {
-	o << i.getName();
+	o << "Form " << i.getName();
+	o << (i.getSigned() ? " is" : " is not");
+	o << " signed, it can be signed by bureaucrats level " << i.getSignGrade();
+	o << " it can be executed by bureacrats level " << i.getExecGrade();
 	return o;
 }
 
@@ -53,7 +56,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	srand(time(NULL));
 	
-	execution(((Bureaucrat)executor).getGrade());
+	Form::execute(executor);
 	std::cout << "Bzzzzzzzzzzzzzzzzzzzzzzzzbrrbrbr ";
 	if (rand()%2)
 		std::cout << _target << " was succesfully robotomised." << std::endl;

@@ -4,12 +4,12 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-PresidentialPardonForm::PresidentialPardonForm() : Form("PresidentialPardonForm", 25, 1)
+PresidentialPardonForm::PresidentialPardonForm() : Form("PresidentialPardonForm", 25, 5)
 {
 	_target = "Default";
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("PresidentialPardonForm", 25, 1)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("PresidentialPardonForm", 25, 5)
 {
 	_target = target;
 }
@@ -40,7 +40,10 @@ PresidentialPardonForm &				PresidentialPardonForm::operator=( PresidentialPardo
 
 std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i )
 {
-	o << i.getName();
+	o << "Form " << i.getName();
+	o << (i.getSigned() ? " is" : " is not");
+	o << " signed, it can be signed by bureaucrats level " << i.getSignGrade();
+	o << " it can be executed by bureacrats level " << i.getExecGrade();
 	return o;
 }
 
@@ -52,8 +55,8 @@ std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i 
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 
-		execution(((Bureaucrat)executor).getGrade());
-		std::cout << _target << " got pardonned by President Zaphod Beeblebrox" << std::endl;
+	Form::execute(executor);
+	std::cout << _target << " got pardonned by President Zaphod Beeblebrox" << std::endl;
 	
 }
 

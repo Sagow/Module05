@@ -48,9 +48,9 @@ Form	*Intern::makeForm(std::string form, std::string target)
 {
 	int i = 0;
 
-	while (i < (int)(possibleForms->length()) && form != possibleForms[i])
+	while (i < 4 && form != possibleForms[i])
 		i++;
-	if (i == (int)(possibleForms->length()))
+	if (i == 4)
 		throw (NotValidException());
 	return ((this->*FormMethods[i])(target));
 }

@@ -42,7 +42,10 @@ ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationFo
 
 std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 {
-	o << i.getName();
+	o << "Form " << i.getName();
+	o << (i.getSigned() ? " is" : " is not");
+	o << " signed, it can be signed by bureaucrats level " << i.getSignGrade();
+	o << " it can be executed by bureacrats level " << i.getExecGrade();
 	return o;
 }
 
@@ -53,7 +56,7 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	execution(((Bureaucrat)executor).getGrade());
+	Form::execute(executor);
 	std::ofstream file;
 	file.open((_target + "_shrubbery").c_str());
 	file << " 	                   . . ." << std::endl;

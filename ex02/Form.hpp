@@ -8,7 +8,6 @@ class Bureaucrat;
 
 class Form
 {
-
 	public:
 
 		Form();
