@@ -4,21 +4,23 @@
 # include <iostream>
 # include <string>
 # include <fstream>
-# include "Form.hpp"
+# include "includes.h"
 
-class ShrubberyCreationForm : public Form
+class Bureaucrat;
+
+class ShrubberyCreationForm : virtual public Form
 {
 
 	public:
 
 		ShrubberyCreationForm();
 		ShrubberyCreationForm( ShrubberyCreationForm const & src );
-		~ShrubberyCreationForm();
+		virtual ~ShrubberyCreationForm();
 		ShrubberyCreationForm &		operator=( ShrubberyCreationForm const & rhs );
 
 		ShrubberyCreationForm(std::string target);
 
-		virtual void	execute(Bureaucrat const & executor);
+		virtual void	execute(Bureaucrat const & executor) const;
 
 	private:
 

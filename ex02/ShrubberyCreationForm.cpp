@@ -17,6 +17,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("Shrubbe
 
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src )
 {
+	*this = src;
 }
 
 
@@ -35,16 +36,17 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationForm const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	setName(rhs.getName());
+	setSigned(rhs.getSigned());
+	setSignGrade(rhs.getSignGrade());
+	setExecGrade(rhs.getExecGrade());
+
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << i.getName();
 	return o;
 }
 
@@ -53,42 +55,33 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void	ShrubberyCreationForm::execute(Bureaucrat const & executor)
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	try
-	{
-		execution(((Bureaucrat)executor).getGrade());
-		std::fstream file;
-		file.open(_target);
-		file << "		              . . ." << std::endl;
-		file << "                   .        .  .   \\  . /\\" << std::endl;
-		file << "                .                 . )  ( \') .  ." << std::endl;
-		file << "                                .  (  /  )" << std::endl;
-		file << "                               .    \\(__)|       .." << std::endl;
-		file << "               .          .            .              ." << std::endl;
-		file << "               .            \'.,        .               ." << std::endl;
-		file << "               .              \'b      *" << std::endl;
-		file << "                .              \'$    \#.                .." << std::endl;
-		file << "               .    .           $\:   \#:               ." << std::endl;
-		file << "             ..      .  ..      *\#  \@):        .   . ." << std::endl;
-		file << "                          .     :\@,\@):   ,.**:\'   ." << std::endl;
-		file << "              .      .,         :\@\@*: ..**\'      .   ." << std::endl;
-		file << "                       \'\#o.    .:(@\'.\@*\"\'  ." << std::endl;
-		file << "               .  .       \'bq,..:,@@*'   ,*      .  ." << std::endl;
-		file << "                          ,p$q8,:\@)\'  .p*\'      ." << std::endl;
-		file << "                   .     \'  . \'\@\@Pp\@\@*\'    .  ." << std::endl;
-		file << "                    .  . ..    Y7\'.\'     .  ." << std::endl;
-		file << "                              :\@):." << std::endl;
-		file << "                             .:\@:\'." << std::endl;
-		file << "                           .::(\@:." << std::endl;
-		file.close();
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << "The form " << getName() << "couldn't be executed by " << ((Bureaucrat)executor).getName() << " because ";
-		std::cerr << e.what() << '\n';
-	}
-	
+	execution(((Bureaucrat)executor).getGrade());
+	std::ofstream file;
+	file.open((_target + "_shrubbery").c_str());
+	file << " 	                   . . ." << std::endl;
+	file << "                   .        .  .   \\  . /\\" << std::endl;
+	file << "                .                 . )  ( \') .  ." << std::endl;
+	file << "                                .  (  /  )" << std::endl;
+	file << "                               .    \\(__)|       .." << std::endl;
+	file << "               .          .            .              ." << std::endl;
+	file << "               .            \'.,        .               ." << std::endl;
+	file << "               .              \'b      *" << std::endl;
+	file << "                .              \'$    #.                .." << std::endl;
+	file << "               .    .           $:   #:               ." << std::endl;
+	file << "             ..      .  ..      *#  @):        .   . ." << std::endl;
+	file << "                          .     :@,@):   ,.**:'   ." << std::endl;
+	file << "              .      .,         :@@*: ..**'      .   ." << std::endl;
+	file << "                       \'#o.    .:(@\'.@*\"'  ." << std::endl;
+	file << "               .  .       \'bq,..:,@@*'   ,*      .  ." << std::endl;
+	file << "                          ,p$q8,:@)\'  .p*\'      ." << std::endl;
+	file << "                   .     \'  . \'@@Pp@@*\'    .  ." << std::endl;
+	file << "                    .  . ..    Y7\'.\'     .  ." << std::endl;
+	file << "                              :@):." << std::endl;
+	file << "                             .:@:\'." << std::endl;
+	file << "                           .::(@:." << std::endl;
+	file.close();
 }
 
 /*

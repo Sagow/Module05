@@ -1,19 +1,14 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include <iostream>
-# include <string>
-# include "Form.hpp"
-# include "PresidentialPardonForm.hpp"
-# include "RobotomyRequestForm.hpp"
-# include "ShrubberyCreationForm.hpp"
+# include "includes.h"
 
 class Form;
 
 class Bureaucrat
 {
 	public:
-		class GradeTooHighException : public std::exception
+		class GradeTooHighException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -21,7 +16,7 @@ class Bureaucrat
 			}
 		};
 
-		class GradeTooLowException : public std::exception
+		class GradeTooLowException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -29,7 +24,7 @@ class Bureaucrat
 			}
 		};
 
-		class AlreadySignedException : public std::exception
+		class AlreadySignedException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{

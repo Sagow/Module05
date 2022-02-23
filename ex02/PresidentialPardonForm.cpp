@@ -34,17 +34,17 @@ PresidentialPardonForm::~PresidentialPardonForm()
 
 PresidentialPardonForm &				PresidentialPardonForm::operator=( PresidentialPardonForm const & rhs )
 {
-	setName(((PresidentialPardonForm)rhs).getName());
-	setSigned(((PresidentialPardonForm)rhs).getSigned());
-	setSignGrade(((PresidentialPardonForm)rhs).getSignGrade());
-	setExecGrade(((PresidentialPardonForm)rhs).getExecGrade());
+	setName(rhs.getName());
+	setSigned(rhs.getSigned());
+	setSignGrade(rhs.getSignGrade());
+	setExecGrade(rhs.getExecGrade());
 
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << i.getName();
 	return o;
 }
 

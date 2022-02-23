@@ -34,17 +34,17 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm const & rhs )
 {
-	setName(((RobotomyRequestForm)rhs).getName());
-	setSigned(((RobotomyRequestForm)rhs).getSigned());
-	setSignGrade(((RobotomyRequestForm)rhs).getSignGrade());
-	setExecGrade(((RobotomyRequestForm)rhs).getExecGrade());
+	setName(rhs.getName());
+	setSigned(rhs.getSigned());
+	setSignGrade(rhs.getSignGrade());
+	setExecGrade(rhs.getExecGrade());
 
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << i.getName();
 	return o;
 }
 
@@ -53,24 +53,17 @@ std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void	RobotomyRequestForm::execute(Bureaucrat const & executor)
+void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	srand(NULL);
-	try
-	{
-		execution(((Bureaucrat)executor).getGrade());
-		std::cout << "Bzzzzzzzzzzzzzzzzzzzzzzzzbrrbrbr ";
-		if (rand()%2)
-			std::cout << _target << " was succesfully robotomised." << std::endl;
-		else
-			std::cout << _target << " couldn't be robotomised." << std::endl;
+	srand(time(NULL));
+	
+	execution(((Bureaucrat)executor).getGrade());
+	std::cout << "Bzzzzzzzzzzzzzzzzzzzzzzzzbrrbrbr ";
+	if (rand()%2)
+		std::cout << _target << " was succesfully robotomised." << std::endl;
+	else
+		std::cout << _target << " couldn't be robotomised." << std::endl;
 
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << "The form " << getName() << "couldn't be executed by " << ((Bureaucrat)executor).getName() << " because ";
-		std::cerr << e.what() << '\n';
-	}
 	
 }
 /*

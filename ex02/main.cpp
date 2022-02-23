@@ -15,26 +15,33 @@ int	main(void)
 	Bureaucrat				chef("Grand Schtroumpf", 1);
 	Bureaucrat				Monique("Monique", 139);
 
+	std::cout << std::endl;
 
-	std::cout << chef.getName() << "va essayer (sans succes) d'executer les forms A, B, C non signees" << std::endl;
+	std::cout << chef.getName() << " va essayer (sans succes) d'executer les forms A, B, C non signees" << std::endl;
 	chef.executeForm(FormA);
 	chef.executeForm(FormB);
-	chef.executeForm(FormB);
+	chef.executeForm(FormC);
 
-	std::cout << chef.getName() << "va signer les forms A, B, C" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << chef.getName() << " va signer les forms A, B, C" << std::endl;
 	chef.signForm(FormA);
 	chef.signForm(FormB);
 	chef.signForm(FormC);
 
-	std::cout << chef.getName() << "va executer les forms A, B, C" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << chef.getName() << " va executer les forms A, B, C" << std::endl;
 	chef.executeForm(FormA);
 	chef.executeForm(FormB);
-	chef.executeForm(FormB);
+	chef.executeForm(FormC);
 
-	std::cout << Monique.getName() << "va essayer (sans succes) d'executer les forms A, B, C" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << Monique.getName() << " va essayer (sans succes) d'executer les forms A, B, C" << std::endl;
 	Monique.executeForm(FormA);
 	Monique.executeForm(FormB);
-	Monique.executeForm(FormB);
+	Monique.executeForm(FormC);
 
 	return (0);
 }

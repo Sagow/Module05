@@ -4,23 +4,25 @@
 # include <iostream>
 # include <string>
 # include <time.h>
-# include "Form.hpp"
+# include <cstdlib>
+# include "includes.h"
 
+class Bureaucrat;
 
-class RobotomyRequestForm : public Form
+class RobotomyRequestForm : virtual public Form
 {
 
 	public:
 
 		RobotomyRequestForm();
 		RobotomyRequestForm( RobotomyRequestForm const & src );
-		~RobotomyRequestForm();
+		virtual ~RobotomyRequestForm();
 		RobotomyRequestForm &		operator=( RobotomyRequestForm const & rhs );
 
 		RobotomyRequestForm(std::string target);
 
 
-		virtual void	execute(Bureaucrat const & executor);
+		virtual void	execute(Bureaucrat const & executor) const;
 
 	private:
 		std::string	_target;

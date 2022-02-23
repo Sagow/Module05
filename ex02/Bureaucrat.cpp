@@ -100,10 +100,11 @@ void		Bureaucrat::executeForm(Form const & form)
 	try
 	{
 		form.execute(*this);
+		std::cout << getName() << " executed form " << form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "The form " << getName() << "couldn't be executed by " << ((Bureaucrat)executor).getName() << " because ";
+		std::cout << "The form " << form.getName() << " couldn't be executed by " << getName() << " because ";
 		std::cerr << e.what() << '\n';
 	}
 

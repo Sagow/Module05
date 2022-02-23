@@ -3,21 +3,23 @@
 
 # include <iostream>
 # include <string>
-# include "Form.hpp"
+# include "includes.h"
 
-class PresidentialPardonForm : public Form
+class Bureaucrat;
+
+class PresidentialPardonForm : virtual public Form
 {
 
 	public:
 
 		PresidentialPardonForm();
 		PresidentialPardonForm( PresidentialPardonForm const & src );
-		~PresidentialPardonForm();
+		virtual ~PresidentialPardonForm();
 		PresidentialPardonForm &		operator=( PresidentialPardonForm const & rhs );
 
 		PresidentialPardonForm(std::string target);
 
-		virtual  void	execute(Bureaucrat const & executor);
+		virtual  void	execute(Bureaucrat const & executor) const;
 
 	private:
 		std::string	_target;

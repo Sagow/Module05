@@ -68,10 +68,10 @@ Form &				Form::operator=( Form const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
-	o << "Form " << (i).getName();
-	o << (((Form)i).getSigned() ? " is" : " is not");
-	o << " signed, it can be signed by bureaucrats level " << ((Form)i).getSignGrade() << (((Form)i).getSignGrade() > 1 ? " and up," : ",");
-	o << " it can be executed by bureacrats level " << ((Form)i).getExecGrade() << (((Form)i).getExecGrade() > 1 ? " and up." : ".");
+	o << "Form " << i.getName();
+	o << (i.getSigned() ? " is" : " is not");
+	o << " signed, it can be signed by bureaucrats level " << i.getSignGrade();
+	o << " it can be executed by bureacrats level " << i.getExecGrade();
 	return o;
 }
 
@@ -107,7 +107,7 @@ void		Form::execution(int grade) const
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-std::string	Form::getName()
+std::string	Form::getName() const
 {
 	return (_name);
 }
@@ -117,7 +117,7 @@ void		Form::setName(std::string name)
 	_name = name;
 }
 
-bool		Form::getSigned()
+bool		Form::getSigned() const
 {
 	return (_signed);
 }
@@ -131,7 +131,7 @@ void		Form::setSigned(int grade)
 	else _signed = true;
 }
 
-int			Form::getSignGrade()
+int			Form::getSignGrade() const
 {
 	return (_signGrade);
 }
@@ -146,7 +146,7 @@ void		Form::setSignGrade(int grade)
 		_signGrade = grade;
 }
 
-int			Form::getExecGrade()
+int			Form::getExecGrade() const
 {
 	return (_execGrade);
 }

@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <string>
-# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
@@ -14,10 +13,10 @@ class Form
 
 		Form();
 		Form( Form const & src );
-		~Form();
+		virtual ~Form();
 		Form &		operator=( Form const & rhs );
 
-		class GradeTooHighException : public std::exception
+		class GradeTooHighException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -25,7 +24,7 @@ class Form
 			}
 		};
 
-		class GradeTooLowException : public std::exception
+		class GradeTooLowException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -33,7 +32,7 @@ class Form
 			}
 		};
 
-		class AlreadySignedException : public std::exception
+		class AlreadySignedException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -41,7 +40,7 @@ class Form
 			}
 		};
 
-		class NotSignedException : public std::exception
+		class NotSignedException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -51,15 +50,15 @@ class Form
 
 		Form(std::string name, int sign, int exec);
 
-		std::string	getName();
+		std::string	getName() const;
 		void		setName(std::string name);
-		bool		getSigned();
+		bool		getSigned() const;
 		void		setSigned(int grade);
-		int			getSignGrade();
+		int			getSignGrade() const;
 		void		setSignGrade(int grade);
-		int			getExecGrade();
+		int			getExecGrade() const;
 		void		setExecGrade(int grade);
-		void		execution(int grade);
+		void		execution(int grade) const;
 
 		void		beSigned(Bureaucrat &bureaucrat);
 		virtual void	execute(Bureaucrat const & executor) const = 0;
@@ -74,5 +73,7 @@ class Form
 };
 
 std::ostream &			operator<<( std::ostream & o, Form const & i );
+
+# include "Bureaucrat.hpp"
 
 #endif /* ************************************************************ FORM_H */
