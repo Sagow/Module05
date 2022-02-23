@@ -4,16 +4,14 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : _name("Anonymous")
 {
-	_name = "Anonymous";
 	_grade = 150;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	std::cout << "Trying to create " << name <<", with a grade of " << grade << std::endl;
-	_name = name;
 	try
 	{
 		setGrade(grade);
@@ -27,7 +25,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 	
 }
 
-Bureaucrat::Bureaucrat( const Bureaucrat & src )
+Bureaucrat::Bureaucrat( const Bureaucrat & src ) : _name(src._name)
 {
 	*this = src;
 }
@@ -47,7 +45,6 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 {
-	_name = rhs._name;
 	_grade = rhs._grade;
 
 	return *this;
@@ -94,7 +91,7 @@ void		Bureaucrat::retrograde()
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-std::string	Bureaucrat::getName()
+std::string	Bureaucrat::getName() const
 {
 	return (_name);
 }

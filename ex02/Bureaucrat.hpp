@@ -39,7 +39,7 @@ class Bureaucrat
 
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 
-		std::string	getName();
+		std::string	getName() const;
 		int			getGrade();
 		void		promote();
 		void		retrograde();
@@ -50,7 +50,7 @@ class Bureaucrat
 
 	private:
 
-		std::string	_name;
+		const std::string	_name;
 		int			_grade;
 
 };

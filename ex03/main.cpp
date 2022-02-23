@@ -13,6 +13,7 @@ int	main(void)
 	{
 		robotomy = someRandomIntern.makeForm("robotomy request", "Bender");
 		chef.signForm(*robotomy);
+		delete robotomy;
 	}
 	catch(const std::exception& e)
 	{
@@ -22,6 +23,7 @@ int	main(void)
 	{
 		pardon = someRandomIntern.makeForm("presidential pardon", "Inox le voleur de croquettes");
 		chef.signForm(*pardon);
+		delete pardon;
 	}
 	catch(const std::exception& e)
 	{
@@ -31,6 +33,7 @@ int	main(void)
 	{
 		shrubbery = someRandomIntern.makeForm("shrubbery creation", "cat forest");
 		chef.signForm(*shrubbery);
+		delete shrubbery;
 	}
 	catch(const std::exception& e)
 	{

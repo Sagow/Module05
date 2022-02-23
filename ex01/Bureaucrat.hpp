@@ -1,8 +1,6 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include <iostream>
-# include <string>
 # include "Form.hpp"
 
 class Form;
@@ -10,7 +8,7 @@ class Form;
 class Bureaucrat
 {
 	public:
-		class GradeTooHighException : public std::exception
+		class GradeTooHighException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -18,7 +16,7 @@ class Bureaucrat
 			}
 		};
 
-		class GradeTooLowException : public std::exception
+		class GradeTooLowException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -26,7 +24,7 @@ class Bureaucrat
 			}
 		};
 
-		class AlreadySignedException : public std::exception
+		class AlreadySignedException : virtual public std::exception
 		{
 			virtual const char* what() const throw()
 			{
@@ -41,7 +39,7 @@ class Bureaucrat
 
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 
-		std::string	getName();
+		std::string	getName() const;
 		int			getGrade();
 		void		promote();
 		void		retrograde();
@@ -51,7 +49,7 @@ class Bureaucrat
 
 	private:
 
-		std::string	_name;
+		const std::string	_name;
 		int			_grade;
 
 };
