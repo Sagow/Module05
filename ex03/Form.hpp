@@ -62,7 +62,7 @@ class Form
 		void		beSigned(Bureaucrat &bureaucrat);
 		virtual void	execute(Bureaucrat const & executor) const = 0;
 
-	protected:
+	private:
 
 		const std::string	_name;
 		bool				_signed;

@@ -34,7 +34,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm const & rhs )
 {
-	_signed = rhs._signed;
+	_target = rhs._target;
 	return *this;
 }
 

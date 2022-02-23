@@ -34,7 +34,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 
 PresidentialPardonForm &				PresidentialPardonForm::operator=( PresidentialPardonForm const & rhs )
 {
-	_signed = rhs._signed;
+	_target = rhs._target;
 	return *this;
 }
 

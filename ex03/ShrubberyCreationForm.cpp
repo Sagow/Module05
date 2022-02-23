@@ -36,7 +36,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationForm const & rhs )
 {
-	_signed = rhs._signed;
+	_target = rhs._target;
 	return *this;
 }
 
