@@ -12,8 +12,6 @@ int	main(void)
 	Form	tropHaut("Trop haut", 0, 68);
 
 	std::cout << normal << std::endl;
-	std::cout << tropBas << std::endl;
-	std::cout << tropHaut << std::endl;
 
 	Bureaucrat Louise("Louise", 48);
 	Bureaucrat Jeanne("Jeanne", 147);

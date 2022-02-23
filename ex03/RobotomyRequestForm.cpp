@@ -34,11 +34,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm const & rhs )
 {
-	setName(rhs.getName());
-	setSigned(rhs.getSigned());
-	setSignGrade(rhs.getSignGrade());
-	setExecGrade(rhs.getExecGrade());
-
+	_signed = rhs._signed;
 	return *this;
 }
 

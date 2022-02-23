@@ -51,7 +51,6 @@ class Form
 		Form(std::string name, int sign, int exec);
 
 		std::string	getName() const;
-		void		setName(std::string name);
 		bool		getSigned() const;
 		void		setSigned(int grade);
 		int			getSignGrade() const;
@@ -63,12 +62,12 @@ class Form
 		void		beSigned(Bureaucrat &bureaucrat);
 		virtual void	execute(Bureaucrat const & executor) const = 0;
 
-	private:
+	protected:
 
-		std::string	_name;
-		bool		_signed;
-		int			_signGrade;
-		int			_execGrade;
+		const std::string	_name;
+		bool				_signed;
+		const int			_signGrade;
+		const int			_execGrade;
 
 };
 

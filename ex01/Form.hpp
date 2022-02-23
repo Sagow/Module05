@@ -55,10 +55,10 @@ class Form
 
 	private:
 
-		std::string	_name;
-		bool		_signed;
-		int			_signGrade;
-		int			_execGrade;
+		const std::string	_name;
+		bool				_signed;
+		const int			_signGrade;
+		const int			_execGrade;
 
 };
 

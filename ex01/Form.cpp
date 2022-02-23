@@ -4,22 +4,18 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Form::Form()
+Form::Form() : _name("Default form"), _signGrade(1), _execGrade(1)
 {
-	_name = "Default form";
 	_signed = false;
-	_signGrade = 1;
-	_execGrade = 1;
 }
 
-Form::Form( const Form & src )
+Form::Form( const Form & src ) : _name(src._name), _signGrade(src._signGrade), _execGrade(src._execGrade)
 {
 	*this = src;
 }
 
-Form::Form(std::string name, int sign, int exec)
+Form::Form(std::string name, int sign, int exec) : _name(name), _signGrade(sign), _execGrade(exec)
 {
-	_name = name;
 	_signed = false;
 	try
 	{
@@ -28,8 +24,6 @@ Form::Form(std::string name, int sign, int exec)
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
-		_signGrade = 1;
-		std::cout << "Signing grade set by default to 1" << std::endl;
 	}
 	try
 	{
@@ -38,8 +32,6 @@ Form::Form(std::string name, int sign, int exec)
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
-		_execGrade = 1;
-		std::cout << "Execution grade set by default to 1" << std::endl;
 	}
 }
 
@@ -59,10 +51,7 @@ Form::~Form()
 
 Form &				Form::operator=( Form const & rhs )
 {
-	_name = rhs._name;
-	_signed = false;
-	_signGrade = rhs._signGrade;
-	_execGrade = rhs._execGrade;
+	_signed = rhs._signed;
 	return *this;
 }
 
@@ -129,8 +118,6 @@ void		Form::setSignGrade(int grade)
 		throw (GradeTooHighException());
 	else if (grade > 150)
 		throw (GradeTooLowException());
-	else
-		_signGrade = grade;
 }
 
 int			Form::getExecGrade()
@@ -144,8 +131,6 @@ void		Form::setExecGrade(int grade)
 		throw (GradeTooHighException());
 	else if (grade > 150)
 		throw (GradeTooLowException());
-	else
-		_execGrade = grade;
 }
 
 /* ************************************************************************** */

@@ -34,11 +34,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 
 PresidentialPardonForm &				PresidentialPardonForm::operator=( PresidentialPardonForm const & rhs )
 {
-	setName(rhs.getName());
-	setSigned(rhs.getSigned());
-	setSignGrade(rhs.getSignGrade());
-	setExecGrade(rhs.getExecGrade());
-
+	_signed = rhs._signed;
 	return *this;
 }
 
